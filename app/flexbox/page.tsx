@@ -1,50 +1,60 @@
 'use client';
 
 import { useState } from 'react';
+import AligmentBar from './AligmentBar';
+
+export type AlignOptions = {
+  label: string;
+  value: string;
+};
 
 export default function FlexboxPage() {
   // Függőleges igazítás
-  const VerticalAlign: { label: string; value: string }[] = [
+
+  const verticalAlign: AlignOptions[] = [
     { label: 'Top', value: 'items-start' },
     { label: 'Center', value: 'items-center' },
     { label: 'Bottom', value: 'items-end' },
   ];
 
   const [vertical, setVerical] = useState<string>('items-start');
+  const [horizontal, setHorizontal] = useState<string>('justify-center');
 
   // Vízszintes igazítás
-  //   const HorizontalAlign: { label: string; value: string }[] = [
-  //     { label: 'Left', value: 'justify-start' },
-  //     { label: 'Center', value: 'justify-center' },
-  //     { label: 'Right', value: 'justify-end' },
-  //     { label: 'Space Between', value: 'justify-between' },
-  //     { label: 'Space Around', value: 'justify-around' },
-  //   ];
+  const horizontalAlign: AlignOptions[] = [
+    { label: 'Left', value: 'justify-start' },
+    { label: 'Center', value: 'justify-center' },
+    { label: 'Right', value: 'justify-end' },
+    { label: 'Space Between', value: 'justify-between' },
+    { label: 'Space Around', value: 'justify-around' },
+  ];
 
   return (
     <div className="flex min-h-screen flex-col">
-      <nav className="flex flex-wrap justify-center gap-4 bg-green-500">
-        <h1>Vertical alignment</h1>
-        {VerticalAlign.map((align) => (
-          <button
-            key={align.value}
-            className="btn btn-primary"
-            onClick={() => setVerical(align.value)}
-          >
-            {align.label}
-          </button>
-        ))}
-      </nav>
-      <main className={`flex h-100 w-full flex-wrap bg-yellow-100 ${vertical}`}>
-        {Array.from({ length: 15 }).map((_, index) => (
+      <AligmentBar
+        alignmentType="Vertical"
+        aligments={verticalAlign}
+        setAligment={setVerical}
+        aktValue={vertical}
+      />
+      <div
+        className={`flex h-72 w-full flex-wrap bg-yellow-100 ${vertical} ${horizontal} gap-4`}
+      >
+        {Array.from({ length: 7 }).map((_, i) => (
           <div
-            className="flex h-24 w-24 items-center justify-center rounded-xl border bg-amber-600 text-2xl font-bold text-white"
-            key={index}
+            key={i}
+            className="flex h-24 w-24 items-center justify-center rounded-xl border border-black bg-gradient-to-tr from-cyan-400 to-blue-600 font-bold text-white shadow-md"
           >
-            {index + 1}
+            {i + 1}
           </div>
         ))}
-      </main>
+      </div>
+      <AligmentBar
+        alignmentType="Horizontal"
+        aligments={horizontalAlign}
+        setAligment={setHorizontal}
+        aktValue={horizontal}
+      />
     </div>
   );
 }

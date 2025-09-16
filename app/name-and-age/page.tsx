@@ -20,6 +20,13 @@ export default function Home() {
     }
   }, [name, age]); // mindkettőt figyeli
 
+  // Ez a useEffect csak egyszer fut le, amikor az oldal/komponens először betöltődik / renderelődik (mount).
+  // Miért jelenik meg 2x? -> React 18-tól a Strict Mode miatt fejlesztői (npm run dev) környezetben
+  // Ez a hibák keresését segíti
+  useEffect(() => {
+    alert('Az oldal betöltődött vagy frissült.');
+  }, []);
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-gray-100">
       <div className="w-96 space-y-4 rounded-2xl bg-white p-8 text-center shadow-lg">

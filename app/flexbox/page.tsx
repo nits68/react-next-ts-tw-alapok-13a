@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import AligmentBar from './AligmentBar';
+import AligmentBar from './AlignmentBar';
 
 export type AlignOptions = {
   label: string;
@@ -17,9 +17,6 @@ export default function FlexboxPage() {
     { label: 'Bottom', value: 'items-end' },
   ];
 
-  const [vertical, setVerical] = useState<string>('items-start');
-  const [horizontal, setHorizontal] = useState<string>('justify-center');
-
   // Vízszintes igazítás
   const horizontalAlign: AlignOptions[] = [
     { label: 'Left', value: 'justify-start' },
@@ -29,13 +26,16 @@ export default function FlexboxPage() {
     { label: 'Space Around', value: 'justify-around' },
   ];
 
+  const [vertical, setVerical] = useState<string>('items-start');
+  const [horizontal, setHorizontal] = useState<string>('justify-center');
+
   return (
     <div className="flex min-h-screen flex-col">
       <AligmentBar
         alignmentType="Vertical"
         aligments={verticalAlign}
         setAligment={setVerical}
-        aktValue={vertical}
+        actValue={vertical}
       />
       <div
         className={`flex h-72 w-full flex-wrap bg-yellow-100 ${vertical} ${horizontal} gap-4`}
@@ -53,7 +53,7 @@ export default function FlexboxPage() {
         alignmentType="Horizontal"
         aligments={horizontalAlign}
         setAligment={setHorizontal}
-        aktValue={horizontal}
+        actValue={horizontal}
       />
     </div>
   );

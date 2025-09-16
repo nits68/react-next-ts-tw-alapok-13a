@@ -11,6 +11,8 @@ export default function Home() {
   const links: Links[] = [
     { id: 1, href: '/counter', label: 'Számláló' },
     { id: 2, href: '/flexbox', label: 'Flexbox demó' },
+    { id: 3, href: '/teglalap', label: 'Elágazások' },
+    { id: 4, href: '/name-and-age', label: 'useEffect demo' },
   ];
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-200">
